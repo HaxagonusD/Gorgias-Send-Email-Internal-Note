@@ -1,0 +1,22 @@
+{
+  "name": "Gorgias-Send-Email-Internal-Note",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:HaxagonusD/Gorgias-Send-Email-Internal-Note.git",
+  "author": "HaxagonusD <jquezad1@binghamton.edu>",
+  "license": "MIT",
+  "type": "module",
+  "dependencies": {
+    "api": "^4.1.0",
+    "dotenv": "^10.0.0",
+    "esm": "^3.2.25",
+    "express": "^4.17.1",
+    "node-fetch": "^3.1.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  },
+  "scripts": {
+    "start": "nodemon app.js"
+  }
+}
