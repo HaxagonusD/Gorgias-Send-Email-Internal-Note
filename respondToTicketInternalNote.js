@@ -2,7 +2,12 @@ import fetch from "node-fetch";
 import retriveRequesterEmail from "./retrieveRequesterEmail.js";
 import { Buffer } from "buffer";
 
-const respondToTicketEmail = async (ticketId, user, emailText, authObject) => {
+const respondToTicketInternalNote = async (
+  ticketId,
+  user,
+  emailText,
+  authObject
+) => {
   // adds response to ticket
   // @params
   // ticketId: (Number)id of the the ticket
@@ -17,7 +22,6 @@ const respondToTicketEmail = async (ticketId, user, emailText, authObject) => {
   // }
   // @returns response from Gorgias api request
   //
-  const requesterEmail = await retriveRequesterEmail(ticketId, authObject);
 
   const options = {
     method: "POST",
@@ -31,14 +35,11 @@ const respondToTicketEmail = async (ticketId, user, emailText, authObject) => {
         ),
     },
     body: JSON.stringify({
-      receiver: { email: requesterEmail },
       sender: { email: user },
       source: {
-        to: [{ address: requesterEmail }],
         from: { address: user },
-        type: "email",
       },
-      channel: "email",
+      channel: "internal-note",
       body_text: emailText,
       body_html: `<p>${emailText}</p>`,
       from_agent: true,
