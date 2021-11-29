@@ -1,6 +1,22 @@
 import fetch from "node-fetch";
-import retriveRequesterEmail from "./retrieveRequesterEmail.js";
 import { Buffer } from "buffer";
+
+/*
+ *   adds response to ticket
+ *
+ *   @param ticketId { Number } id of the the ticket
+ *   @param user { String } user email (the "from" field)
+ *   @param  emailText { String } body of teh message
+ *   @param  channel { String } method of communication can be 'email' or 'internal-note' or any other method of
+ *   communication supported by Gorgias
+ *   @param authObject { Object } contains authentication information in the format: {
+ *      @param username: { String } username provied by gorgias (it is usally an email),
+ *      @param password: { String } Api key provided by Gogias,
+ *      @param base_url: { String } base url provided by Gorgias
+ *
+ *   }
+ *   @returns {Object} response from Gorgias api request
+ */
 
 const respondToTicketInternalNote = async (
   ticketId,
@@ -8,21 +24,6 @@ const respondToTicketInternalNote = async (
   emailText,
   authObject
 ) => {
-  // adds response to ticket
-  // @params
-  // ticketId: (Number)id of the the ticket
-  // user: (String) user email (the "from" field)
-  // emailText: (String) body of teh message
-  // channel: (String) method of communication can be 'email' or 'internal-note' or any other emthod of communication supported by Gorgias
-  // authObject: (Object) contains authentication information in the format: {
-  //    username: (String) username provied by gorgias (it is usally an email),
-  //    password: (String) Api key provided by Gogias,
-  //    base_url: (String) base url provided by Gorgias
-  //
-  // }
-  // @returns response from Gorgias api request
-  //
-
   const options = {
     method: "POST",
     headers: {
@@ -56,5 +57,20 @@ const respondToTicketInternalNote = async (
 
   return response;
 };
+
+const authObject = {
+  username: "julianq.js@gmail.com",
+  password: "397daf8bd0019d7d20e4d7057e85370e12c9e43cf347cadad9b505687ea66b9b",
+  base_url: "https://julianq.gorgias.com/api/",
+};
+
+const response = await respondToTicketInternalNote(
+  9324390,
+  "julianq.js@gmail.com",
+  "fifth Responding to binghamton.edu for the fifth time",
+  authObject
+);
+
+console.log(response);
 
 export default respondToTicketEmail;

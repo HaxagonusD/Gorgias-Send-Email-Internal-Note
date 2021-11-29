@@ -2,16 +2,20 @@ import fetch from "node-fetch";
 import { Buffer } from "buffer";
 
 const retriveRequesterEmail = async (ticketId, authObject) => {
-  // gets the email associated to the customer in the given Gorgias ticket
-  // @params
-  // ticketId: (Number)id of the the ticket
-  // authObject: (Object) contains authentication information in the format: {
-  //    username: (String) username provied by gorgias (it is usally an email),
-  //    password: (String) Api key provided by Gogias,
-  //    base_url: (String) base url provided by Gorgias
-  // }
-  // @returns email from the user requesting help in Gorgias ticket
-  //
+  /*
+   *   adds response to ticket
+   *
+   *   @param ticketId { Number } id of the the ticket
+   *   communication supported by Gorgias
+   *   @param authObject { Object } contains authentication information in the format: {
+   *      @param username: { String } username provied by gorgias (it is usally an email),
+   *      @param password: { String } Api key provided by Gogias,
+   *      @param base_url: { String } base url provided by Gorgias
+   *
+   *   }
+   *   @returns { String } Enmail of the person that initially sent the ticket
+   */
+
   const options = {
     method: "GET",
     headers: {
